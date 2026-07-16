@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://d0vnk60fc6tj0"]
+
+[ext_resource type="Texture2D" uid="uid://cexxkr3k68m6d" path="res://icon.svg" id="1_rggrj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fnwge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rggrj")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3uwob"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp01s"]
+size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jt128"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecruw"]
+size = Vector2(40, 20)
+
+[node name="Player" type="CharacterBody2D" unique_id=1034043426]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1594488790]
+sprite_frames = SubResource("SpriteFrames_fnwge")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1465936133]
+shape = SubResource("RectangleShape2D_3uwob")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1920253449]
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=475829317]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1827114455]
+shape = SubResource("RectangleShape2D_jp01s")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=577580751]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2057022118]
+shape = SubResource("RectangleShape2D_jt128")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=28120872]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=687844663]
+shape = SubResource("RectangleShape2D_ecruw")
+
+[node name="AbilityController" type="Node" parent="." unique_id=1988807858]
+
+[node name="AtlasEnergyComponent" type="Node" parent="." unique_id=1955442135]
