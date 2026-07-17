@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://vae4ke2w47es"]
 
+[ext_resource type="Script" uid="uid://bx8xcc2t50uyp" path="res://scenes/ui/dialogue_box.gd" id="1_xg44k"]
+
 [node name="DialogueBox" type="CanvasLayer" unique_id=2037946354]
+script = ExtResource("1_xg44k")
 
 [node name="Panel" type="Panel" parent="." unique_id=930147344]
 offset_left = 50.0

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0vnk60fc6tj0"]
 
 [ext_resource type="Texture2D" uid="uid://cexxkr3k68m6d" path="res://icon.svg" id="1_rggrj"]
+[ext_resource type="Script" uid="uid://duqvujh36qy78" path="res://scenes/player/ability_controller.gd" id="2_dovo2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fnwge"]
 animations = [{
@@ -54,5 +55,6 @@ shape = SubResource("RectangleShape2D_jt128")
 shape = SubResource("RectangleShape2D_ecruw")
 
 [node name="AbilityController" type="Node" parent="." unique_id=1988807858]
+script = ExtResource("2_dovo2")
 
 [node name="AtlasEnergyComponent" type="Node" parent="." unique_id=1955442135]

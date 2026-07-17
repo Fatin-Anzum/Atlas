@@ -16,9 +16,14 @@ enum State {
 
 @export var move_speed := 220.0
 
+
 var current_state: State = State.IDLE
 
 var nearby_interactable: InteractableBase = null
+
+
+@onready var ability_controller = $AbilityController
+
 
 
 func _ready():
@@ -34,6 +39,26 @@ func _physics_process(_delta):
 
 		State.IDLE, State.MOVE:
 			_handle_movement()
+
+
+	if Input.is_action_just_pressed("attack"):
+
+		attack()
+
+
+	if Input.is_action_just_pressed("dash"):
+
+		dash()
+
+
+	if Input.is_action_just_pressed("cycle"):
+
+		ability_controller.cycle_next()
+
+
+	if Input.is_action_just_pressed("ability"):
+
+		ability_controller.activate_current()
 
 
 	if Input.is_action_just_pressed("interact"):
@@ -52,6 +77,7 @@ func _handle_movement():
 		"move_up",
 		"move_down"
 	)
+
 
 	velocity = input_vector * move_speed
 
@@ -82,3 +108,52 @@ func _on_area_exited(area):
 	if area == nearby_interactable:
 
 		nearby_interactable = null
+
+
+
+func attack():
+
+	if current_state != State.IDLE and current_state != State.MOVE:
+
+		return
+
+
+	current_state = State.ATTACK
+
+
+	$HitBox.monitoring = true
+
+
+	await get_tree().create_timer(0.2).timeout
+
+
+	$HitBox.monitoring = false
+
+
+	current_state = State.IDLE
+
+
+
+func dash():
+
+	if current_state != State.IDLE and current_state != State.MOVE:
+
+		return
+
+
+	current_state = State.DASH
+
+
+	var original_speed = move_speed
+
+
+	move_speed *= 2
+
+
+	await get_tree().create_timer(0.15).timeout
+
+
+	move_speed = original_speed
+
+
+	current_state = State.IDLE

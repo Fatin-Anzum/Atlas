@@ -1,11 +1,19 @@
-extends Node
+extends CanvasLayer
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var name_label = $Panel/NameLabel
+@onready var text_label = $Panel/TextLabel
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
+func display_line(line):
+
+	name_label.text = line.speaker_name
+
+	text_label.text = line.text
+	
+func _unhandled_input(event):
+
+	if event.is_action_pressed("interact"):
+
+		DialogueManager.next_line()
